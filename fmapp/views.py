@@ -11,7 +11,19 @@ def home(request):
     context = { 'login_session' : login_session }
     return render(request, 'home.html', context)
 
-# 아래 함수들 다 수정해야함. 목적에 맞게 id를 받는다거나...등등    
+# 아래 함수들 다 수정해야함. 목적에 맞게 id를 받는다거나...등등
+def search(request):
+    form = SearchForm(request.POST or None)
+    if request.method =="POST":
+        if form.is_valid():
+            배 = request.POST.get("배", None)
+    return render(request, 'search.html',{"form":form})
+
+def detail(request):
+    login_session = request.session.get('login_session', '')
+    context = { 'login_session' : login_session }
+    return render(request, 'detail.html', context) 
+    
 def community(request):
     login_session = request.session.get('login_session', '')
     q = Community.objects.order_by('-id')
@@ -114,11 +126,11 @@ def writef(request, community_id):
     expire_date -= now
     max_age = expire_date.total_seconds()
 
-    cookie_value = request.COOKIES.get('hitboard1', '_')
+    cookie_value = request.COOKIES.get('hitboard', '_')
 
     if f'_{community_id}_' not in cookie_value:
         cookie_value += f'{community_id}_'
-        response.set_cookie('hitboard1', value=cookie_value, max_age=max_age, httponly=True)
+        response.set_cookie('hitboard', value=cookie_value, max_age=max_age, httponly=True)
         community_detail.hits += 1
         community_detail.save()
     return response
