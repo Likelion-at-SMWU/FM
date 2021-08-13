@@ -159,3 +159,10 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('u3jhx2KwlmCxpCXpvGaCB9Z0xX3rIAu1OLU07f21
 AWS_STORAGE_BUCKET_NAME = 'likelionfmbucket'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_REGION_NAME = 'ap-northeast-2'
+
+import dj_database_url
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
