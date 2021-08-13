@@ -1,4 +1,4 @@
-#!/Users/anhyeonju/Desktop/FM_서경/FM/myvenv/bin/python3
+#!/Users/anhyeonju/Desktop/FM_AWS/FM/myvenv/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

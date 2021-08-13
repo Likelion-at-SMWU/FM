@@ -21,12 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)5))46$e2bsi%v3plvq)-hcv%fhsqrn@ybx4!2(-ekikr==x=2'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY','django-insecure-)5))46$e2bsi%v3plvq)-hcv%fhsqrn@ybx4!2(-ekikr==x=2'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG' ,'True') != 'False')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'auth.User'
 
@@ -53,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -146,3 +149,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+#AWS
+
+AWS_ACCESS_KEY_ID = os.environ.get('AKIA2EN5H3JDVU6GBTNS')
+AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+AWS_STORAGE_BUCKET_NAME = 'likelionfmbucket'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
