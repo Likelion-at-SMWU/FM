@@ -154,8 +154,8 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 #AWS
 
-AWS_ACCESS_KEY_ID = os.environ.get('AKIA2EN5H3JDVU6GBTNS')
-AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+AWS_ACCESS_KEY_ID = os.environ.get('AKIA2EN5H3JD4GIPG5NZ')
+AWS_SECRET_ACCESS_KEY = os.environ.get('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')
 AWS_STORAGE_BUCKET_NAME = 'likelionfmbucket'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_REGION_NAME = 'ap-northeast-2'
